@@ -40,11 +40,13 @@ namespace Houser_App.Web
 
             services.AddScoped<IHousingService, HousingService>();
 
+            services.AddCors();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, HouserContext context)
         {
             if (env.IsDevelopment())
             {
@@ -55,7 +57,11 @@ namespace Houser_App.Web
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
+            app.UseCors(builder => builder.AllowAnyHeader()
+                                          .AllowAnyMethod()
+                                          .AllowAnyOrigin()
+                        );
             app.UseMvc();
         }
     }

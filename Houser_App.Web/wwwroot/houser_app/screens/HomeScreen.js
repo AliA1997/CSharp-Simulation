@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
+import Expo, { WebBrowser} from 'expo';
+
+// const { manifest } = Expo.Constants;
 
 
 export default class HomeScreen extends React.Component {
@@ -22,8 +24,23 @@ export default class HomeScreen extends React.Component {
   };
 
   componentDidMount() {
-  
-    fetch('https://172.27.32.45:45455/api/houses').then(res => console.log('res-------', res)).catch(err => console.log('err--------', err));
+    // const server = manifest.debuggerHost.split(`:`).shift().concat(`:45456`);
+    // console.log('server--------------', server);
+    alert('componentDidMount Hitt---------');
+    fetch(`https://10.0.2:44330/api/houses`, {
+      method: "GET",
+      type: 'application/json',
+      origin: 'include',
+      mode: 'cors',
+      headers: {
+        'Context-Type': 'application/json'
+      }
+    })
+    .then(res => res ? res.json() : console.log('res--------', res))
+    .then(resJSON => console.log('resJSON----------', resJSON))
+    .catch(err => {
+      console.log(JSON.stringify(err))
+    });
     try {
 
 

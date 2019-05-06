@@ -5,6 +5,7 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "setip": "set REACT_NATIVE_PACKAGER_HOSTNAME=172.27.32.45",
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "node ./node_modules/jest/bin/jest.js --watchAll"
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
+    "cross-fetch": "^3.0.1",
     "expo": "^31.0.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
